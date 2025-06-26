@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import ApperIcon from '@/components/ApperIcon';
+import React, { useState } from "react";
+import ApperIcon from "@/components/ApperIcon";
 
 const Select = ({
   label,
@@ -18,21 +18,23 @@ const handleChange = (e) => {
       onChange(e);
     }
   };
-return (
+
+  return (
     <div className={`${className}`}>
       {/* Label positioned outside select */}
       {label && (
-        <label className={`block text-sm font-medium mb-2 ${error ? 'text-red-600' : 'text-gray-700'}`}>
+        <label className="block text-sm font-medium text-surface-700 mb-2">
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
       
-      {/* Select Field */}
+      {/* Select Container */}
       <div className="relative">
         <select
           value={value}
           onChange={handleChange}
+          required={required}
           disabled={disabled}
           className={`
             w-full px-4 py-3 border-2 rounded-lg transition-all duration-200 bg-white appearance-none cursor-pointer

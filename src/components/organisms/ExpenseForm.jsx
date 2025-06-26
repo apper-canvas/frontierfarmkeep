@@ -49,8 +49,17 @@ const ExpenseForm = ({ expense = null, onSave, onCancel }) => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+const handleChange = (e) => {
+    // Defensive programming to handle various event structures
+    const target = e?.target || e?.currentTarget || {};
+    const name = target.name || '';
+    const value = target.value || '';
+    
+    if (!name) {
+      console.warn('FormField onChange event missing name attribute');
+      return;
+    }
+    
     setFormData(prev => ({ ...prev, [name]: value }));
     
     // Clear error when user starts typing
